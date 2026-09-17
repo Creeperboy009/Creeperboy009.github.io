@@ -57,7 +57,7 @@
         });
 
         // Every 50 milliseconds, call the update Function (see below)
-        setInterval(update, 50);
+        setInterval(update, 25);
 
         // Every time the box is clicked, call the handleBoxClick Function (see below)
         box.on("click", handleBoxClick);
@@ -80,10 +80,10 @@
         // TODO 2 - Variable declarations
         var positionX = 0;
         var points = 0;
-        var speed = 10;
+        var speed = 5;
 
         var positionY = 0;
-        var speedY = 10;
+        var speedY = 5;
         var randNum = Math.random() * boardWidth; 
 
         var colorStr = rgb(50, 25, 250);
@@ -138,11 +138,11 @@
           randNum = Math.random() * boardHeight;
           positionY = randNum;
           points++;
-          speed = 3 * points + 10;
-          speed = 3 * points + 10;
+          speed = 3 * points + 5;
+          speed = 3 * points + 5;
           changeBoxText(points);
           getRandomColor()
-          box.css("background-color", colorStr);
+          box.css("background-color", randColor);
 
 
 
@@ -162,7 +162,7 @@
           var randColor1 = Math.random() * 255;
           var randColor2 = Math.random() * 255;
           var randColor3 = Math.random() * 255;
-          return colorStr = rgb("#"+randColor1, randColor2, randColor3)
+          return randColor = rgb(randColor1, randColor2, randColor3);
         }
 
 
