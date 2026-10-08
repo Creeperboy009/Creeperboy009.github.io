@@ -89,6 +89,8 @@
         var colorStr = rgb(50, 25, 250);
         var randColor = rgb(randColor1, randColor2, randColor3);
 
+        var rotation = 10
+
 
 
 
@@ -139,7 +141,7 @@
           positionY = randNum;
           points++;
           speed = 3 * points + 5;
-          speed = 3 * points + 5;
+          speedY = 3 * points + 5;
           changeBoxText(points);
           getRandomColor()
           box.css("background-color", randColor);

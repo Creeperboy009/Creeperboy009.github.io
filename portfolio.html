@@ -1,6 +1,24 @@
 <html>
   <head>
     <title>NO</title>
+    <style>
+      #selected {
+        color: #a8b2d8;
+        text-shadow: 0 0 5px #a8b2d8;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 8px;
+        background: #e94560;
+        color: #000000;
+        box-shadow: 3px 5px;
+      }
+
+      .nav-li a {
+        position: static;
+      }
+    </style>
 
     <link rel="stylesheet" href="style.css">
   </head>
@@ -13,9 +31,11 @@
         <li class="nav-li">
           <a href="index.html">Home</a>
         </li>
-        <li>
+        <li id="selected">
           <a href="portfolio.html">Portfolio</a>
         </li>
+        <li class="nav-li">
+          <a href="photo-gallery.html">Photo Gallery</a></li>
       </ul>
     </nav>
 
