@@ -1,3 +1,56 @@
+const spikes = [];
+const grassPlatforms = [];
+const spikesImage = new Image();
+spikesImage.src = "images/spikes.png";
+spikesImage.addEventListener("error", function () {
+  console.error("Could not load images/spikes.png");
+});
+
+const drawPlatformsWithoutGrass = drawPlatforms;
+drawPlatforms = function () {
+  drawPlatformsWithoutGrass();
+
+  for (const platform of grassPlatforms) {
+    ctx.fillStyle = "#79502b";
+    ctx.fillRect(platform.x, platform.y, platform.width, platform.height);
+    ctx.fillStyle = "#4caf50";
+    ctx.fillRect(
+      platform.x,
+      platform.y,
+      platform.width,
+      Math.min(6, platform.height)
+    );
+  }
+};
+
+function createGrassPlatform(x, y, width, height) {
+  if (height > width) {
+    createPlatform(x, y, width, height, "#808080");
+    return;
+  }
+
+  createPlatform(x, y, width, height, "#79502b");
+  grassPlatforms.push(platforms[platforms.length - 1]);
+}
+
+const drawBadPlatformsWithoutSpikes = drawBadPlatforms;
+drawBadPlatforms = function () {
+  drawBadPlatformsWithoutSpikes();
+
+  if (!spikesImage.complete || spikesImage.naturalWidth === 0) {
+    return;
+  }
+
+  for (const spike of spikes) {
+    ctx.drawImage(spikesImage, spike.x, spike.y, spike.width, spike.height);
+  }
+};
+
+function createSpikes(x, y, width, height) {
+  createBadPlatform(x, y, width, height, "transparent");
+  spikes.push({ x, y, width, height });
+}
+
 $(function () {
   // initialize canvas and context when able to
   canvas = document.getElementById("canvas");
@@ -26,38 +79,38 @@ $(function () {
     // ONLY CHANGE BELOW THIS POINT //
     //////////////////////////////////
 
-    // TODO 1 - Enable the Grid
-    toggleGrid();
-
-
     // TODO 2 - Create Platforms
-    createPlatform(300, 300, 20, 550);
-    createPlatform(0, 600, 200, 20);
-    createPlatform(100, 460, 200, 20);
-    createPlatform(300, 300, 700, 20);
-    createPlatform(1100, 0, 20, 600);
-    createPlatform(600, 230, 20, 70);
-    createPlatform(800, 0, 20, 70);
-    createPlatform(0, 320, 200, 20);
-    createPlatform(500, 600, 620, 20);
-    createPlatform(700, 460, 20, 140);
-    createPlatform(850, 300, 20, 200);
-    createPlatform(1100, 600, 200, 20);
-    createPlatform(1250, 460, 200, 20);
-    createPlatform(1100, 320, 200, 20);
+    createGrassPlatform(300, 300, 20, 550);
+    createGrassPlatform(0, 600, 200, 20);
+    createGrassPlatform(100, 460, 200, 20);
+    createGrassPlatform(300, 300, 700, 20);
+    createGrassPlatform(1100, 0, 20, 600);
+    createGrassPlatform(600, 230, 20, 70);
+    createGrassPlatform(800, 0, 20, 70);
+    createGrassPlatform(0, 320, 200, 20);
+    createGrassPlatform(500, 600, 620, 20);
+    createGrassPlatform(700, 460, 20, 140);
+    createGrassPlatform(850, 300, 20, 200);
+    createGrassPlatform(1100, 600, 200, 20);
+    createGrassPlatform(1250, 460, 200, 20);
+    createGrassPlatform(1100, 320, 200, 20);
 
 
 
     // TODO 3 - Create Collectables
     createCollectable("steve", 1200, 60);
-    createCollectable("steve", 200, 150);
-    createCollectable("steve", 700, 700);
+    createCollectable("diamond", 200, 150);
+    createCollectable("database", 700, 700);
 
     
     // TODO 4 - Create Cannons
     createCannon("right", 250, 1500);
     createCannon("right", 150, 1700);
     createCannon("bottom", 390, 900);
+
+    // TODO 5 - Create Spikes
+    createSpikes(600, 500, 100, 100);
+    createSpikes(1000, 500, 100, 100);
     
     
     //////////////////////////////////
