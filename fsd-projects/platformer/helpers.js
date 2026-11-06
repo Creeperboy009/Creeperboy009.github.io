@@ -40,7 +40,7 @@ function main() {
   projectileCollision(); //checks if the player is getting hit by a projectile in the next frame
   badPlatformCollision(); //checks if the player is touching a bad platform
   collectablesCollide(); //checks if player has touched a collectable
-
+   
   animate(); //this changes halle's picture to the next frame so it looks animated.
   // debug()                   //debugging values. Comment this out when not debugging.
   drawRobot(); //this actually displays the image of the robot.
